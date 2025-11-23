@@ -1,0 +1,182 @@
+MERGE (:Genre {name:'Action'});
+MERGE (:Genre {name:'Sci-Fi'});
+MERGE (:Genre {name:'Drama'});
+MERGE (:Genre {name:'Thriller'});
+MERGE (:Genre {name:'Crime'});
+MERGE (:Genre {name:'Fantasy'});
+MERGE (:Genre {name:'Adventure'});
+
+MERGE (:Person {name:'Christopher Nolan'});
+MERGE (:Person {name:'Lana Wachowski'});
+MERGE (:Person {name:'Lilly Wachowski'});
+MERGE (:Person {name:'James Cameron'});
+MERGE (:Person {name:'David Fincher'});
+MERGE (:Person {name:'Peter Jackson'});
+MERGE (:Person {name:'Denis Villeneuve'});
+
+MERGE (:Person {name:'Keanu Reeves'});
+MERGE (:Person {name:'Laurence Fishburne'});
+MERGE (:Person {name:'Carrie-Anne Moss'});
+
+MERGE (:Person {name:'Leonardo DiCaprio'});
+MERGE (:Person {name:'Joseph Gordon-Levitt'});
+MERGE (:Person {name:'Elliot Page'});
+
+MERGE (:Person {name:'Christian Bale'});
+MERGE (:Person {name:'Heath Ledger'});
+
+MERGE (:Person {name:'Brad Pitt'});
+MERGE (:Person {name:'Edward Norton'});
+MERGE (:Person {name:'Morgan Freeman'});
+
+MERGE (:Person {name:'Sam Worthington'});
+MERGE (:Person {name:'Zoe Saldana'});
+
+MERGE (:Person {name:'Ryan Gosling'});
+MERGE (:Person {name:'Harrison Ford'});
+
+MERGE (:Person {name:'Elijah Wood'});
+MERGE (:Person {name:'Ian McKellen'});
+
+CREATE (:Movie {title:'The Matrix', year:1999, rating:8.7});
+CREATE (:Movie {title:'The Matrix Reloaded', year:2003, rating:7.2});
+CREATE (:Movie {title:'Inception', year:2010, rating:8.8});
+CREATE (:Movie {title:'Interstellar', year:2014, rating:8.6});
+CREATE (:Movie {title:'The Dark Knight', year:2008, rating:9.0});
+CREATE (:Movie {title:'Fight Club', year:1999, rating:8.8});
+CREATE (:Movie {title:'Se7en', year:1995, rating:8.6});
+CREATE (:Movie {title:'Avatar', year:2009, rating:7.8});
+CREATE (:Movie {title:'Blade Runner 2049', year:2017, rating:8.0});
+CREATE (:Movie {title:'The Lord of the Rings: The Fellowship of the Ring', year:2001, rating:8.8});
+
+MATCH (m:Movie {title:'The Matrix'}),
+      (d1:Person {name:'Lana Wachowski'}),
+      (d2:Person {name:'Lilly Wachowski'}),
+      (a1:Person {name:'Keanu Reeves'}),
+      (a2:Person {name:'Laurence Fishburne'}),
+      (a3:Person {name:'Carrie-Anne Moss'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Action'})
+CREATE (d1)-[:DIRECTED]->(m)
+CREATE (d2)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (a3)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'The Matrix Reloaded'}),
+      (d1:Person {name:'Lana Wachowski'}),
+      (d2:Person {name:'Lilly Wachowski'}),
+      (a1:Person {name:'Keanu Reeves'}),
+      (a2:Person {name:'Carrie-Anne Moss'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Action'})
+CREATE (d1)-[:DIRECTED]->(m)
+CREATE (d2)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Inception'}),
+      (d:Person {name:'Christopher Nolan'}),
+      (a1:Person {name:'Leonardo DiCaprio'}),
+      (a2:Person {name:'Joseph Gordon-Levitt'}),
+      (a3:Person {name:'Elliot Page'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Action'}),
+      (g3:Genre {name:'Thriller'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (a3)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2)
+CREATE (m)-[:IN_GENRE]->(g3);
+
+MATCH (m:Movie {title:'Interstellar'}),
+      (d:Person {name:'Christopher Nolan'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Drama'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Interstellar'})
+MERGE (a1:Person {name:'Matthew McConaughey'})
+MERGE (a2:Person {name:'Anne Hathaway'})
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m);
+
+MATCH (m:Movie {title:'The Dark Knight'}),
+      (d:Person {name:'Christopher Nolan'}),
+      (a1:Person {name:'Christian Bale'}),
+      (a2:Person {name:'Heath Ledger'}),
+      (g1:Genre {name:'Action'}),
+      (g2:Genre {name:'Crime'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Fight Club'}),
+      (d:Person {name:'David Fincher'}),
+      (a1:Person {name:'Brad Pitt'}),
+      (a2:Person {name:'Edward Norton'}),
+      (g1:Genre {name:'Drama'}),
+      (g2:Genre {name:'Thriller'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Se7en'}),
+      (d:Person {name:'David Fincher'}),
+      (a1:Person {name:'Brad Pitt'}),
+      (a2:Person {name:'Morgan Freeman'}),
+      (g1:Genre {name:'Crime'}),
+      (g2:Genre {name:'Thriller'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Avatar'}),
+      (d:Person {name:'James Cameron'}),
+      (a1:Person {name:'Sam Worthington'}),
+      (a2:Person {name:'Zoe Saldana'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Action'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'Blade Runner 2049'}),
+      (d:Person {name:'Denis Villeneuve'}),
+      (a1:Person {name:'Ryan Gosling'}),
+      (a2:Person {name:'Harrison Ford'}),
+      (g1:Genre {name:'Sci-Fi'}),
+      (g2:Genre {name:'Drama'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);
+
+MATCH (m:Movie {title:'The Lord of the Rings: The Fellowship of the Ring'}),
+      (d:Person {name:'Peter Jackson'}),
+      (a1:Person {name:'Elijah Wood'}),
+      (a2:Person {name:'Ian McKellen'}),
+      (g1:Genre {name:'Fantasy'}),
+      (g2:Genre {name:'Adventure'})
+CREATE (d)-[:DIRECTED]->(m)
+CREATE (a1)-[:ACTED_IN]->(m)
+CREATE (a2)-[:ACTED_IN]->(m)
+CREATE (m)-[:IN_GENRE]->(g1)
+CREATE (m)-[:IN_GENRE]->(g2);

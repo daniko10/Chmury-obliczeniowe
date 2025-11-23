@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neo4j Filmy – Graf powiązań</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Filmy</span>
+    </div>
+  </nav>
+
+  <div class="container mb-4">
+  <div class="row">
+
+    <div class="col-md-3 mb-3">
+      <h5>Wyszukiwanie filmów</h5>
+      <form id="search-form" class="mb-3">
+        <div class="mb-2">
+          <label for="title-input" class="form-label">Tytuł zawiera:</label>
+          <input
+            type="text"
+            id="title-input"
+            class="form-control"
+            placeholder="Matrix"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Szukaj</button>
+      </form>
+
+      <h6>Wyniki wyszukiwania</h6>
+      <ul id="results-list" class="list-group" 
+          style="max-height: 400px; overflow-y: auto;"></ul>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <h5>Wszystkie filmy</h5>
+      <ul id="all-movies-list" class="list-group"
+          style="max-height: 80vh; overflow-y: auto;"></ul>
+    </div>
+
+    <div class="col-md-5 mb-3" id="details-div" style="display: none;">
+      <h5>Szczegóły filmu</h5>
+
+      <div id="movie-details" class="card mb-3" style="display: none;">
+        <div class="card-body">
+          <h5 class="card-title" id="movie-title"></h5>
+          <h6 class="card-subtitle mb-2 text-muted" id="movie-subtitle"></h6>
+
+          <p class="mb-1"><strong>Aktorzy:</strong></p>
+          <ul id="actors-list"></ul>
+
+          <p class="mb-1"><strong>Reżyserzy:</strong></p>
+          <ul id="directors-list"></ul>
+
+          <p class="mb-1"><strong>Gatunki:</strong></p>
+          <ul id="genres-list"></ul>
+        </div>
+      </div>
+
+      <h5>Podobne filmy</h5>
+      <ul id="similar-list" class="list-group" 
+          style="max-height: 40vh; overflow-y: auto;"></ul>
+    </div>
+  </div>
+</div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
