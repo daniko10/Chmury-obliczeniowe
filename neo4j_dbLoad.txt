@@ -13,28 +13,21 @@ MERGE (:Person {name:'James Cameron'});
 MERGE (:Person {name:'David Fincher'});
 MERGE (:Person {name:'Peter Jackson'});
 MERGE (:Person {name:'Denis Villeneuve'});
-
 MERGE (:Person {name:'Keanu Reeves'});
 MERGE (:Person {name:'Laurence Fishburne'});
 MERGE (:Person {name:'Carrie-Anne Moss'});
-
 MERGE (:Person {name:'Leonardo DiCaprio'});
 MERGE (:Person {name:'Joseph Gordon-Levitt'});
 MERGE (:Person {name:'Elliot Page'});
-
 MERGE (:Person {name:'Christian Bale'});
 MERGE (:Person {name:'Heath Ledger'});
-
 MERGE (:Person {name:'Brad Pitt'});
 MERGE (:Person {name:'Edward Norton'});
 MERGE (:Person {name:'Morgan Freeman'});
-
 MERGE (:Person {name:'Sam Worthington'});
 MERGE (:Person {name:'Zoe Saldana'});
-
 MERGE (:Person {name:'Ryan Gosling'});
 MERGE (:Person {name:'Harrison Ford'});
-
 MERGE (:Person {name:'Elijah Wood'});
 MERGE (:Person {name:'Ian McKellen'});
 
