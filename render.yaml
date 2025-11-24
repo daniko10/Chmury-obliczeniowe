@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: neo4j-movies
+    env: python
+    region: frankfurt
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      NEO4J_URI:
+        value: "neo4j+s://e7df21d3.databases.neo4j.io"
+      NEO4J_USER:
+        value: "neo4j"
+      NEO4J_PASSWORD:
+        value: "r00mmDAQW83-9zYmFxNHJeCxMDzJm-XClpZVA-X8knQ"
